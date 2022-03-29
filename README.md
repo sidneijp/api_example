@@ -4,6 +4,7 @@ Setup
 - `git clone`
 - `cd api_example`
 - `npm install`
+- `sudo service postgresql start`
 - `sudo su postgres`
 - `psql`
 - `create database api_database;`
@@ -12,7 +13,6 @@ Setup
 - `grant ALL ON DATABASE api_database to api_user;`
 - `\q`
 - `exit`
-- `sudo service postgresql start`
 
 - executa o tsc no modo watch:
 - `npm run tsc`
