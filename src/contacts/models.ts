@@ -20,6 +20,7 @@ export const Contato = db.define("contatos", {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
+      isIn: [['telefone', 'email', 'instagram', 'twitter']],
     },
   },
 }, {
