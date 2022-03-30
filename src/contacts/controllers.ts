@@ -47,7 +47,30 @@ export const getContact = async function(req: Request, res: Response): Promise<v
 }
 
 export const changeContact = async function(req: Request, res: Response): Promise<any> {
-    // TODO: alterar no banco de dados um contato a partir do :id passado na URL e apenas dos campos enviados na body (json)
+    const { id } = req.params
+    const {tipo, valor, apelido} = req.body
+    const contactId = parseInt(id)
+    const contactIsNumber = !isNaN(contactId)
+    if (!(contactId && contactIsNumber)) {
+        res.status(404).json({detail: 'Contato não encontrado'})
+        return
+    }
+    const contato = await Contato.findOne({where: {id: contactId}})
+    if (!contato) {
+        res.status(404).json({detail: 'Contato não encontrado'})
+        return
+    }
+    if (tipo) {
+        contato.tipo = tipo
+    }
+    if (apelido) {
+        contato.apelido = apelido
+    }
+    if (valor) {
+        contato.valor = valor
+    }
+    await contato.save()
+    res.status(200).json(contato)
 }
 
 export const replaceContact = async function(req: Request, res: Response): Promise<any> {
