@@ -2,8 +2,8 @@ import { Response, Request } from "express"
 import {Contato} from "./models"
 
 export const getContacts = async function(req: Request, res: Response): Promise<void>  {
-    res.json({hello: 'world'})
-    // TODO: obter do banco de dados uma lista de todos os contatos
+    const contatos = await Contato.findAll()
+    res.status(200).json(contatos)
 }
 
 export const createContact = async function(req: Request, res: Response): Promise<void>  {
