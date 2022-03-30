@@ -55,5 +55,18 @@ export const replaceContact = async function(req: Request, res: Response): Promi
 }
 
 export const removeContact = async function(req: Request, res: Response): Promise<any> {
-    // TODO: remover do banco de dados um contato a partir do :id passado na URL
-}
+    const { id } = req.params
+    const contactId = parseInt(id)
+    const contactIsNumber = !isNaN(contactId)
+    if (!(contactId && contactIsNumber)) {
+        res.status(404).send('Contato não encontrado')
+        return
+    }
+    const contato = await Contato.findOne({where: {id: contactId}})
+    if (contato) {
+        await contato.destroy()
+        res.status(204).end()
+        return
+    }
+    // const contatos = await Contato.findOne(id)
+    res.status(404).json({detail: 'Contato não encontrado'})}
