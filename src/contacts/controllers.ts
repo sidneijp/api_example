@@ -8,7 +8,25 @@ export const getContacts = async function(req: Request, res: Response): Promise<
 
 export const createContact = async function(req: Request, res: Response): Promise<void>  {
     const {tipo, valor, apelido} = req.body
-    // TODO: crie no banco de dados um contato
+    let contato
+    try {
+        contato = await Contato.build({
+            tipo,
+            valor,
+            apelido
+        })
+        contato.save()
+    } catch (err) {
+        const response_payload = {errors: []}
+        for (let error of err.errors) {
+            response_payload.errors.push(error.message)
+        }
+        res.status(400).json(response_payload.errors)
+        return
+    }
+
+    // esperar terminar a query
+    res.status(203).json(contato)
 }
 
 export const getContact = async function(req: Request, res: Response): Promise<void>  {
