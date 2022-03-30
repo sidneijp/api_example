@@ -34,7 +34,7 @@ export const getContact = async function(req: Request, res: Response): Promise<v
     const contactId = parseInt(id)
     const contactIsNumber = !isNaN(contactId)
     if (!(contactId && contactIsNumber)) {
-        res.status(404).send('Contato não encontrado')
+        res.status(404).json({detail: 'Contato não encontrado'})
         return
     }
     const contato = await Contato.findOne({where: {id: contactId}})
@@ -59,7 +59,7 @@ export const removeContact = async function(req: Request, res: Response): Promis
     const contactId = parseInt(id)
     const contactIsNumber = !isNaN(contactId)
     if (!(contactId && contactIsNumber)) {
-        res.status(404).send('Contato não encontrado')
+        res.status(404).json({detail: 'Contato não encontrado'})
         return
     }
     const contato = await Contato.findOne({where: {id: contactId}})
