@@ -29,7 +29,21 @@ export const createContact = async function(req: Request, res: Response): Promis
 }
 
 export const getContact = async function(req: Request, res: Response): Promise<void>  {
-    // TODO: obter do banco de dados um contato a partir do :id passado na URL
+    // TODO: refatorar condições
+    const { id } = req.params
+    const contactId = parseInt(id)
+    const contactIsNumber = !isNaN(contactId)
+    if (!(contactId && contactIsNumber)) {
+        res.status(404).send('Contato não encontrado')
+        return
+    }
+    const contato = await Contato.findOne({where: {id: contactId}})
+    if (contato) {
+        res.status(200).json(contato)
+        return
+    }
+    // const contatos = await Contato.findOne(id)
+    res.status(404).json({detail: 'Contato não encontrado'})
 }
 
 export const changeContact = async function(req: Request, res: Response): Promise<any> {
