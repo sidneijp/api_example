@@ -10,12 +10,11 @@ export const createContact = async function(req: Request, res: Response): Promis
     const {tipo, valor, apelido} = req.body
     let contato
     try {
-        contato = await Contato.build({
+        contato = await Contato.create({
             tipo,
             valor,
             apelido
         })
-        contato.save()
     } catch (err) {
         const response_payload = {errors: []}
         for (let error of err.errors) {
