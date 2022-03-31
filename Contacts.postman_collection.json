@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "95e9b2be-280d-4150-88a6-f9b41fe6c44b",
+		"name": "Contacts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criar Contato",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"tipo\": \"instagram\",\r\n\t\"apelido\": \"pessoal\",\r\n\t\"valor\": \"@chipsnelson\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{porta}}",
+					"path": [
+						"contacts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtem Lista de Contatos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Obtem Contato",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/5",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{porta}}",
+					"path": [
+						"contacts",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Altera Contato",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"telefone\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/2",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{porta}}",
+					"path": [
+						"contacts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Substitui Contato",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/2",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{porta}}",
+					"path": [
+						"contacts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Contato Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/:id",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{porta}}",
+					"path": [
+						"contacts",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
