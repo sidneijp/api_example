@@ -38,7 +38,19 @@
 			"name": "Obtem Lista de Contatos",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/",
+					"protocol": "{{protocolo}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{porta}}",
+					"path": [
+						"contacts",
+						""
+					]
+				}
 			},
 			"response": []
 		},
@@ -77,7 +89,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/2",
+					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/3",
 					"protocol": "{{protocolo}}",
 					"host": [
 						"{{host}}"
@@ -85,7 +97,7 @@
 					"port": "{{porta}}",
 					"path": [
 						"contacts",
-						"2"
+						"3"
 					]
 				}
 			},
@@ -96,6 +108,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipo\": \"telefone\",\r\n    \"valor\": \"11990907070\",\r\n    \"apelido\": \"casa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "{{protocolo}}://{{host}}:{{porta}}/contacts/2",
 					"protocol": "{{protocolo}}",
